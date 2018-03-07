@@ -1,8 +1,6 @@
-/**
- * Actions of Vuex
- */
+import axios from 'axios'
 
-  // 声明 actions事件
+// 声明 actions事件
 const actions = {
 
     increment:({ commit }) => commit('increment'),
@@ -20,15 +18,37 @@ const actions = {
           resolve()
         }, 1000)
       })
+    },
+    //异步请求后台数据
+    getManagerUserTableDateAction({ commit,state}){
+      axios({
+        method: 'post',
+        url: 'http://localhost:8090/demo/user/getAllUser.do',
+      }).then((response) => {
+        // console.log(response)
+        commit('setManagerUserTableDateAction',response.data.result)
+      }).catch((err) =>{
+//          console.log(err)
+      })
+    },
+    handleSizeChange({commit,state},val) {
+      console.log(`每页 ${val} 条`);
+    },
+    //当点击页数时，重新异步请求数据
+    handleCurrentChange({commit,state},val) {
+      axios({
+        method: 'post',
+        url: 'http://localhost:8090/demo/user/getAllUser.do',
+        data:{
+          "currentPage":val
+        }
+      }).then((response) => {
+        // console.log(response)
+        commit('setManagerUserTableDateAction',response.data.result)
+      }).catch((err) =>{
+//          console.log(err)
+      })
     }
-    // /**
-    //  * 改变主页底部的按钮导航栏显示状态
-    //  * @param {*} {commit}
-    //  * @param {*} stateOfChange
-    //  */
-    // changeBottomNavToolBarState({commit}, stateOfChange) {
-    //   commit('CHANGE_BOTTOM_NAV_TOOL_BAR_STATE', stateOfChange)
-    // }
   }
 
 export default actions

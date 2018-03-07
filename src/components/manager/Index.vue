@@ -4,17 +4,19 @@
     <el-container style="border: 1px solid #eee">
       <el-aside  style="width:auto; background-color: rgb(238, 241, 246)">
         <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
-          <el-menu-item index="1">
-            <i class="fa fa-home" aria-hidden="true"></i>
-            <span slot="title"><router-link to="/manager">首页</router-link></span>
-          </el-menu-item>
+          <router-link to="/manager/welcome">
+            <el-menu-item index="1">
+              <i class="fa fa-home home_icon" aria-hidden="true"></i>
+              <span slot="title">首页</span>
+            </el-menu-item>
+          </router-link>
           <el-submenu index="2">
             <template slot="title">
               <i class="el-icon-location"></i>
               <span slot="title">权限管理</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="2-1"><router-link to="/manager/auth/user">用户管理</router-link></el-menu-item>
+              <router-link to="/manager/auth/user"><el-menu-item index="2-1">用户管理</el-menu-item></router-link>
               <el-menu-item index="2-2">菜单管理</el-menu-item>
               <el-menu-item index="2-3">角色管理</el-menu-item>
               <el-menu-item index="2-4">权限管理</el-menu-item>
@@ -56,17 +58,6 @@
         </el-header>
 
         <el-main>
-          <!--<el-table :data="tableData">-->
-            <!--<el-table-column prop="date" label="日期" width="140">-->
-            <!--</el-table-column>-->
-            <!--<el-table-column prop="name" label="姓名" width="120">-->
-            <!--</el-table-column>-->
-            <!--<el-table-column prop="address" label="地址">-->
-            <!--</el-table-column>-->
-          <!--</el-table>-->
-          <el-card class="box-card">
-            <h1>欢迎来到管理后台！</h1>
-          </el-card>
           <keep-alive>
             <router-view></router-view>
           </keep-alive>
@@ -93,6 +84,11 @@
     width: 200px;
     height: 100%;
     min-height: 38rem;
+  }
+
+  .home_icon{
+    font-size: 1.2rem;
+    padding: 0 0.3rem;
   }
 </style>
 
