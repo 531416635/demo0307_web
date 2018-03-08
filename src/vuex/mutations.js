@@ -11,14 +11,9 @@ const mutations = {
   decrement (state){
     state.count--
   },
-  // /**
-  //  * 改变主页底部的按钮导航栏显示状态
-  //  * @param {*} state vue state对象
-  //  * @param {*} stateOfChange 要改变的状态
+
   //  */
-  setManagerUserTableDateAction(state, stateOfChange){
-    console.log(stateOfChange)
-    console.log(state)
+  setManagerUserTableDate(state, stateOfChange){
     state.managerUserTableData = stateOfChange.userList
     state.managerUserTableTotalPage = stateOfChange.page.totalCount
     state.managerUserTableCurrentPage = stateOfChange.page.currentPageNum

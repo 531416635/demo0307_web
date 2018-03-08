@@ -1,7 +1,7 @@
 <template>
 <div>
   <el-table
-    :data="$store.state.managerUserTableData"
+    :data="managerUserTableData"
     style="width: 100%">
     <el-table-column
       prop="userName"
@@ -17,31 +17,35 @@
   <div class="block">
     <el-pagination
       @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page.sync="$store.state.managerUserTableCurrentPage"
+      @current-change="getManagerUserTableDateAction"
+      :current-page="managerUserTableCurrentPage"
       :page-size="10"
       layout="total, prev, pager, next"
-      :total="$store.state.managerUserTableTotalPage">
+      :total="managerUserTableTotalPage">
     </el-pagination>
   </div>
 </div>
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+  import { mapState,mapGetters, mapActions } from 'vuex'
 
     export default {
       mounted () {
         this.getManagerUserTableDateAction()
       },
-      // computed: mapGetters([
-      //   'getManagerUserTableTotalPage'
-      // ]),
+      computed: {
+        ...mapState({
+          managerUserTableData: state => state.managerUserTableData,
+          managerUserTableCurrentPage: state => state.managerUserTableCurrentPage,
+          managerUserTableTotalPage: state => state.managerUserTableTotalPage
+        })
+      },
       methods: {
         ...mapActions([
            'getManagerUserTableDateAction',
-           'handleSizeChange',
-           'handleCurrentChange',
+           'handleSizeChangeManagerUserTableDateAction',
+           'handleCurrentChangeManagerUserTableDateAction',
          ])
       }
     }

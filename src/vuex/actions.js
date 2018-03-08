@@ -19,23 +19,14 @@ const actions = {
         }, 1000)
       })
     },
-    //异步请求后台数据
-    getManagerUserTableDateAction({ commit,state}){
-      axios({
-        method: 'post',
-        url: 'http://localhost:8090/demo/user/getAllUser.do',
-      }).then((response) => {
-        // console.log(response)
-        commit('setManagerUserTableDateAction',response.data.result)
-      }).catch((err) =>{
-//          console.log(err)
-      })
-    },
-    handleSizeChange({commit,state},val) {
+    // todo -- 设置每页显示大小 (暂时没用)
+    handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
     },
-    //当点击页数时，重新异步请求数据
-    handleCurrentChange({commit,state},val) {
+
+    // todo 后台管理--用户管理 --开始
+    // 获取table数据
+    getManagerUserTableDateAction({ commit,state},val){
       axios({
         method: 'post',
         url: 'http://localhost:8090/demo/user/getAllUser.do',
@@ -43,12 +34,13 @@ const actions = {
           "currentPage":val
         }
       }).then((response) => {
-        // console.log(response)
-        commit('setManagerUserTableDateAction',response.data.result)
+        //重新渲染table数据和page分页数据
+        commit('setManagerUserTableDate',response.data.result)
       }).catch((err) =>{
 //          console.log(err)
       })
-    }
+    },
+    // todo 后台管理--用户管理 --结束
   }
 
 export default actions
