@@ -10,10 +10,18 @@ import 'element-ui/lib/theme-chalk/index.css';
 import 'font-awesome/css/font-awesome.css'
 import '../static/css/main.css'
 
-
 Vue.use(VueRouter)
 Vue.use(VueResource)
 Vue.use(ElementUI);
+
+
+router.beforeEach((to, from, next) => {
+  /* 路由发生变化修改页面title */
+  if (to.meta.title) {
+    document.title = to.meta.title;
+  }
+  next();
+})
 
 new Vue({
   el: '#app',

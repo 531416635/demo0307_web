@@ -1,46 +1,67 @@
 import axios from 'axios'
 
+/**
+ * 解决跨域请求时，session丢失的问题（需与后台跨域请求一起设置Credentials）
+ * @type {boolean}
+ */
+axios.defaults.withCredentials=true;
+
+const hostUrl = "http://localhost:8090/demo/"
+
 // 声明 actions事件
 const actions = {
 
-    increment:({ commit }) => commit('increment'),
-    decrement:({ commit }) => commit('decrement'),
-    incrementIfOdd ({ commit, state },stateOfChange) {
-      console.log(stateOfChange)
-      if ((state.count + 1) % 2 === 0) {
-        commit('increment')
+  // todo 后台管理--用户管理
+  // 获取table数据
+  getManagerUserTableDateAction({ commit,state},val){
+    axios({
+      method: 'post',
+      url: hostUrl + 'user/getAllUser.do',
+      data:{
+        "currentPage":val
       }
-    },
-    incrementAsync ({ commit }) {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => {
-          commit('increment')
-          resolve()
-        }, 1000)
-      })
-    },
-    // todo -- 设置每页显示大小 (暂时没用)
-    handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
-    },
-
-    // todo 后台管理--用户管理 --开始
-    // 获取table数据
-    getManagerUserTableDateAction({ commit,state},val){
-      axios({
-        method: 'post',
-        url: 'http://localhost:8090/demo/user/getAllUser.do',
-        data:{
-          "currentPage":val
-        }
-      }).then((response) => {
-        //重新渲染table数据和page分页数据
-        commit('setManagerUserTableDate',response.data.result)
-      }).catch((err) =>{
+    }).then((response) => {
+      //重新渲染table数据和page分页数据
+      commit('setManagerUserTableDate',response.data.result)
+    }).catch((err) =>{
 //          console.log(err)
-      })
-    },
-    // todo 后台管理--用户管理 --结束
-  }
+    })
+  },
+
+  // todo 后台管理--角色管理
+  // 获取table数据
+  getManagerRoleTableDateAction({ commit,state},val){
+    axios({
+      method: 'post',
+      url: hostUrl + 'role/getAllRole.do',
+      data:{
+        "currentPage":val
+      }
+    }).then((response) => {
+      //重新渲染table数据和page分页数据
+      commit('setManagerRoleTableDate',response.data.result)
+    }).catch((err) =>{
+//          console.log(err)
+    })
+  },
+
+  // todo 后台管理--菜单管理
+  // 获取table数据
+  getManagerMenuTableDateAction({ commit,state},val){
+    axios({
+      method: 'post',
+      url: hostUrl + 'menu/getAllMenu.do',
+      data:{
+        "currentPage":val
+      }
+    }).then((response) => {
+      //重新渲染table数据和page分页数据
+      commit('setManagerMenuTableDate',response.data.result)
+    }).catch((err) =>{
+//          console.log(err)
+    })
+  },
+
+}
 
 export default actions

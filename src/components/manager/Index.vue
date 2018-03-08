@@ -17,8 +17,8 @@
             </template>
             <el-menu-item-group>
               <router-link to="/manager/auth/user"><el-menu-item index="2-1">用户管理</el-menu-item></router-link>
-              <el-menu-item index="2-2">菜单管理</el-menu-item>
-              <el-menu-item index="2-3">角色管理</el-menu-item>
+              <router-link to="/manager/auth/menu"><el-menu-item index="2-2">菜单管理</el-menu-item></router-link>
+              <router-link to="/manager/auth/role"><el-menu-item index="2-3">角色管理</el-menu-item></router-link>
               <el-menu-item index="2-4">权限管理</el-menu-item>
             </el-menu-item-group>
 
@@ -58,9 +58,9 @@
         </el-header>
 
         <el-main>
-          <keep-alive>
+          <!--<keep-alive>-->
             <router-view></router-view>
-          </keep-alive>
+          <!--</keep-alive>-->
         </el-main>
 
       </el-container>

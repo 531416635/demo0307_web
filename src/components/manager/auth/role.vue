@@ -1,27 +1,27 @@
 <template>
 <div>
   <el-table
-    :data="managerUserTableData"
+    :data="managerRoleTableData"
     style="width: 100%">
     <el-table-column
-      prop="userName"
-      label="用户名"
+      prop="roleName"
+      label="角色名称"
       width="180">
     </el-table-column>
     <el-table-column
-      prop="userPassword"
-      label="密码">
+      prop="roleCode"
+      label="角色代码">
     </el-table-column>
   </el-table>
 
   <div class="block">
     <el-pagination
       @size-change="handleSizeChange"
-      @current-change="getManagerUserTableDateAction"
-      :current-page="managerUserTableCurrentPage"
+      @current-change="getManagerRoleTableDateAction"
+      :current-page="managerRoleTableCurrentPage"
       :page-size="10"
       layout="total, prev, pager, next"
-      :total="managerUserTableTotalPage">
+      :total="managerRoleTableTotalPage">
     </el-pagination>
   </div>
 </div>
@@ -32,18 +32,18 @@
 
     export default {
       mounted () {
-        this.getManagerUserTableDateAction()
+        this.getManagerRoleTableDateAction()
       },
       computed: {
         ...mapState({
-          managerUserTableData: state => state.managerUserTableData,
-          managerUserTableCurrentPage: state => state.managerUserTableCurrentPage,
-          managerUserTableTotalPage: state => state.managerUserTableTotalPage
+          managerRoleTableData: state => state.managerRoleTableData,
+          managerRoleTableCurrentPage: state => state.managerRoleTableCurrentPage,
+          managerRoleTableTotalPage: state => state.managerRoleTableTotalPage
         })
       },
       methods: {
         ...mapActions([
-           'getManagerUserTableDateAction'
+           'getManagerRoleTableDateAction'
          ]),
         // todo -- 设置每页显示大小 (暂时没用)
         handleSizeChange(val) {
