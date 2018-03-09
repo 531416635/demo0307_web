@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-const managerAuthIndex = r => require.ensure([], () => r(require('@/components/manager/Index')), 'managerAuthIndex')
-const managerWelcome = r => require.ensure([], () => r(require('@/components/manager/Welcome')), 'managerAuthUser')
-const managerAuthUser = r => require.ensure([], () => r(require('@/components/manager/auth/user')), 'managerAuthUser')
-const managerAuthRole = r => require.ensure([], () => r(require('@/components/manager/auth/role')), 'managerAuthRole')
-const managerAuthMenu = r => require.ensure([], () => r(require('@/components/manager/auth/menu')), 'managerAuthMenu')
+//后台管理首页和欢迎页
+const managerIndex = r => require.ensure([], () => r(require('@/components/manager/Index')), 'managerIndex')
+const managerWelcome = r => require.ensure([], () => r(require('@/components/manager/Welcome')), 'managerUser')
+//用户管理
+const managerUser = r => require.ensure([], () => r(require('@/components/manager/user/user')), 'managerUser')
+const managerAddUser = r => require.ensure([], () => r(require('@/components/manager/user/addUser')), 'managerAddUser')
+//角色管理
+const managerRole = r => require.ensure([], () => r(require('@/components/manager/role/role')), 'managerRole')
+//菜单管理
+const managerMenu = r => require.ensure([], () => r(require('@/components/manager/menu/menu')), 'managerMenu')
 
 Vue.use(Router)
 
@@ -16,28 +21,33 @@ export default new Router({
     },
     {
       path:'/manager',
-      name:'managerAuthIndex',
-      component:managerAuthIndex,
+      name:'managerIndex',
+      component:managerIndex,
       children:[{
         path: '/manager/welcome',
-        name: 'managerAuthUser',
+        name: 'managerUser',
         component: managerWelcome,
         meta:{title: '欢迎访问'}
       },{
-        path: '/manager/auth/user',
-        name: 'managerAuthUser',
-        component: managerAuthUser,
-        meta:{title: '用户管理'}
+        path: '/manager/user',
+        name: 'managerUser',
+        component: managerUser,
+        meta:{title: '用户管理',keepAlive:true},
       },{
-        path: '/manager/auth/role',
-        name: 'managerAuthRole',
-        component: managerAuthRole,
-        meta:{title: '角色管理'}
+        path: '/manager/addUser',
+        name: 'managerAddUser',
+        component: managerAddUser,
+        meta:{title: '添加用户'},
       },{
-        path: '/manager/auth/menu',
-        name: 'managerAuthMenu',
-        component: managerAuthMenu,
-        meta:{title: '菜单管理'}
+        path: '/manager/role',
+        name: 'managerRole',
+        component: managerRole,
+        meta:{title: '角色管理',keepAlive:true}
+      },{
+        path: '/manager/menu',
+        name: 'managerMenu',
+        component: managerMenu,
+        meta:{title: '菜单管理',keepAlive:true}
       }]
     }
   ]

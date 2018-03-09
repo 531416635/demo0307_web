@@ -16,10 +16,9 @@
               <span slot="title">权限管理</span>
             </template>
             <el-menu-item-group>
-              <router-link to="/manager/auth/user"><el-menu-item index="2-1">用户管理</el-menu-item></router-link>
-              <router-link to="/manager/auth/menu"><el-menu-item index="2-2">菜单管理</el-menu-item></router-link>
-              <router-link to="/manager/auth/role"><el-menu-item index="2-3">角色管理</el-menu-item></router-link>
-              <el-menu-item index="2-4">权限管理</el-menu-item>
+              <router-link to="/manager/user"><el-menu-item index="2-1">用户管理</el-menu-item></router-link>
+              <router-link to="/manager/menu"><el-menu-item index="2-2">菜单管理</el-menu-item></router-link>
+              <router-link to="/manager/role"><el-menu-item index="2-3">角色管理</el-menu-item></router-link>
             </el-menu-item-group>
 
           </el-submenu>
@@ -40,10 +39,10 @@
 
       <el-container>
         <el-header style="font-size: 12px">
-          <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
-            <el-radio-button :label="false">展开</el-radio-button>
-            <el-radio-button :label="true">收起</el-radio-button>
-          </el-radio-group>
+          <div @click="changeIsCollapse" style="display: inline-block;">
+            <i v-if="isCollapse" class="fa fa-windows fa-2x" aria-hidden="true" style="color: #409EFF"></i>
+            <i v-else class="fa fa-windows fa-2x" aria-hidden="true" style="color: #606266"></i>
+          </div>
           <div style="float: right">
             <el-dropdown>
               <i class="el-icon-setting" style="margin-right: 15px"></i>
@@ -58,9 +57,12 @@
         </el-header>
 
         <el-main>
+          <router-view></router-view>
           <!--<keep-alive>-->
-            <router-view></router-view>
+            <!--<router-view  v-if="$route.meta.keepAlive"></router-view>-->
           <!--</keep-alive>-->
+          <!--<router-view  v-if="!$route.meta.keepAlive"></router-view>-->
+
         </el-main>
 
       </el-container>
@@ -85,7 +87,9 @@
     height: 100%;
     min-height: 38rem;
   }
-
+  .el-menu--collapse {
+    height: 100%;
+  }
   .home_icon{
     font-size: 1.2rem;
     padding: 0 0.3rem;
@@ -107,6 +111,10 @@
       //左侧菜单--关闭
       handleClose(key, keyPath) {
         console.log(key, keyPath);
+      },
+      //控制左侧导航栏的展开与关闭
+      changeIsCollapse(){
+        this.isCollapse = !this.isCollapse
       }
     }
   };

@@ -24,6 +24,18 @@ const actions = {
       //重新渲染table数据和page分页数据
       commit('setManagerUserTableDate',response.data.result)
     }).catch((err) =>{
+    })
+  },
+  // 添加用户
+  addManagerUserAction({ commit,state},userModel){
+    axios({
+      method: 'post',
+      url: hostUrl + 'user/addUser.do',
+      data:userModel.userModel
+    }).then((response) => {
+      //初始化table数据和page分页数据
+      commit('clearManagerUserTableDate')
+    }).catch((err) =>{
 //          console.log(err)
     })
   },

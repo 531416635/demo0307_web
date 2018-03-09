@@ -10,7 +10,11 @@ const mutations = {
     state.managerUserTableTotalPage = stateOfChange.page.totalCount
     state.managerUserTableCurrentPage = stateOfChange.page.currentPageNum
   },
-
+  clearManagerUserTableDate(state){
+    state.managerUserTableData = []
+    state.managerUserTableTotalPage = 0
+    state.managerUserTableCurrentPage = 1
+  },
   //  后台管理--角色管理  渲染table数据和page分页数据
   setManagerRoleTableDate(state, stateOfChange){
     state.managerRoleTableData = stateOfChange.roleList
