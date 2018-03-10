@@ -8,8 +8,16 @@ const managerUser = r => require.ensure([], () => r(require('@/components/manage
 const managerAddUser = r => require.ensure([], () => r(require('@/components/manager/user/addUser')), 'managerAddUser')
 //角色管理
 const managerRole = r => require.ensure([], () => r(require('@/components/manager/role/role')), 'managerRole')
-//菜单管理
+//菜单管理 -- table展示
 const managerMenu = r => require.ensure([], () => r(require('@/components/manager/menu/menu')), 'managerMenu')
+//菜单管理 -- tree展示
+const managerMenuTree = r => require.ensure([], () => r(require('@/components/manager/menu/menuTree')), 'managerMenuTree')
+//菜单管理 -- 详情展示
+const managerShowMenu = r => require.ensure([], () => r(require('@/components/manager/menu/showMenu')), 'managerShowMenu')
+//菜单管理 -- 添加菜单
+const managerAddMenu = r => require.ensure([], () => r(require('@/components/manager/menu/addMenu')), 'managerAddMenu')
+//菜单管理 -- 修改菜单
+const managerEditMenu = r => require.ensure([], () => r(require('@/components/manager/menu/editMenu')), 'managerEditMenu')
 
 Vue.use(Router)
 
@@ -48,6 +56,26 @@ export default new Router({
         name: 'managerMenu',
         component: managerMenu,
         meta:{title: '菜单管理',keepAlive:true}
+      },{
+        path: '/manager/menuTree',
+        name: 'managerMenuTree',
+        component: managerMenuTree,
+        meta:{title: '菜单管理',keepAlive:true}
+      },{
+        path: '/manager/showMenu',
+        name: 'managerShowMenu',
+        component: managerShowMenu,
+        meta:{title: '菜单详情',keepAlive:true}
+      },{
+        path: '/manager/addMenu',
+        name: 'managerAddMenu',
+        component: managerAddMenu,
+        meta:{title: '新增菜单',keepAlive:true}
+      },{
+        path: '/manager/editMenu',
+        name: 'managerEditMenu',
+        component: managerEditMenu,
+        meta:{title: '修改菜单',keepAlive:true}
       }]
     }
   ]

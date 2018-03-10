@@ -10,6 +10,7 @@ const mutations = {
     state.managerUserTableTotalPage = stateOfChange.page.totalCount
     state.managerUserTableCurrentPage = stateOfChange.page.currentPageNum
   },
+  //后台管理--用户管理  清除数据，
   clearManagerUserTableDate(state){
     state.managerUserTableData = []
     state.managerUserTableTotalPage = 0
@@ -28,6 +29,30 @@ const mutations = {
     state.managerMenuTableTotalPage = stateOfChange.page.totalCount
     state.managerMenuTableCurrentPage = stateOfChange.page.currentPageNum
   },
+
+  //  后台管理--菜单管理  渲染tree数据
+  setManagerMenuTreeDate(state, stateOfChange){
+    state.managerMenuTreeData = stateOfChange.menuList
+  },
+
+  //  后台管理--菜单管理  菜单数据新增、查看、修改
+  setManagerMenuModel(state, stateOfChange){
+    state.managerMenuModel = stateOfChange.managerMenuModel
+  },
+
+  //  后台管理--菜单管理  菜单数据新增、查看、修改
+  clearManagerMenuModel(state){
+     state.managerMenuModel.id = ""
+     state.managerMenuModel.menuPath = ""
+     state.managerMenuModel.menuName = ""
+     state.managerMenuModel.menuType = ""
+     state.managerMenuModel.menuParent = ""
+     state.managerMenuModel.menuAuth = ""
+     state.managerMenuModel.menuEnabled = ""
+     state.managerMenuModel.label = ""
+     state.managerMenuModel.children = []
+     state.managerMenuModel.value = ""
+  }
 }
 
 export default mutations

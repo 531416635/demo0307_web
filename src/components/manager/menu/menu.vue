@@ -1,8 +1,15 @@
 <template>
 <div>
+  <router-link to="/manager/menu"><el-button type="primary" style="cursor:pointer"><i class="fa fa-table" aria-hidden="true"></i>表单</el-button></router-link>
+  <router-link to="/manager/menuTree"><el-button type="primary" style="cursor:pointer"><i class="fa fa-tree" aria-hidden="true"></i>树形</el-button></router-link>
+
   <el-table
     :data="managerMenuTableData"
     style="width: 100%">
+    <el-table-column
+      prop="id"
+      label="菜单ID">
+    </el-table-column>
     <el-table-column
       prop="menuName"
       label="菜单名称"
@@ -15,6 +22,10 @@
     <el-table-column
       prop="menuType"
       label="菜单类型">
+    </el-table-column>
+    <el-table-column
+      prop="menuParent"
+      label="父菜单ID">
     </el-table-column>
     <el-table-column
       prop="menuAuth"
@@ -40,7 +51,6 @@
   </div>
 </div>
 </template>
-
 <script>
   import { mapState,mapGetters, mapActions } from 'vuex'
 
@@ -63,6 +73,7 @@
         handleSizeChange(val) {
           console.log(`每页 ${val} 条`);
         },
+        //table表格数据格式化
         getFormatter(row, column, cellValue){
           if(cellValue){
             return "是"

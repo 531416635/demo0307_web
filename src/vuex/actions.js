@@ -74,6 +74,22 @@ const actions = {
     })
   },
 
+  // 获取菜单树结构数据
+  getManagerMenuTreeDateAction({ commit,state},val){
+    axios({
+      method: 'post',
+      url: hostUrl + 'menu/getMenuChildren.do',
+      data:{
+        "currentPage":val
+      }
+    }).then((response) => {
+      //重新渲染tree数据
+      commit('setManagerMenuTreeDate',response.data.result)
+    }).catch((err) =>{
+//          console.log(err)
+    })
+  },
+
 }
 
 export default actions

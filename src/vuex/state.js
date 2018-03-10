@@ -13,10 +13,25 @@ const state = {
   managerRoleTableData:[],
   managerRoleTableCurrentPage:1,
   managerRoleTableTotalPage:0,
+  //后台管理--菜单管理--tree数据
+  managerMenuTreeData:[],
   //后台管理--菜单管理--table数据
   managerMenuTableData:[],
   managerMenuTableCurrentPage:1,
   managerMenuTableTotalPage:0,
+  //后台管理--菜单管理--菜单数据新增、查看、修改
+  managerMenuModel: {
+    id: "",
+    menuPath: "",
+    menuName:"",
+    menuType:"",
+    menuParent:"",
+    menuAuth:"",
+    menuEnabled:"",
+    label:"",
+    children:[],
+    value:""
+  }
 }
 
 export default state
