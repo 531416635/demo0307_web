@@ -25,6 +25,7 @@
           return{
             labelPosition: 'top',
             userModel: {
+              id:0,
               userName: '',
               userPassword: ''
             },
