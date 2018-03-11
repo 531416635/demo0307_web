@@ -95,6 +95,42 @@ const actions = {
     })
   },
 
+// 新增角色
+  addManagerRoleAction({ commit,state},roleModel){
+    axios({
+      method: 'post',
+      url: hostUrl + 'role/addRole.do',
+      data:roleModel.roleModel
+    }).then((response) => {
+      // commit('setManagerAllRoleDate',response.data.result)
+    }).catch((err) =>{
+//          console.log(err)
+    })
+  },
+  // 编辑角色
+  editManagerRoleAction({ commit,state},roleModel){
+    axios({
+      method: 'post',
+      url: hostUrl + 'role/editRole.do',
+      data:roleModel.roleModel
+    }).then((response) => {
+      // commit('setManagerAllRoleDate',response.data.result)
+    }).catch((err) =>{
+//          console.log(err)
+    })
+  },
+  // 删除角色
+  deleteManagerRoleAction({ commit,state},roleModel){
+    axios({
+      method: 'post',
+      url: hostUrl + 'role/deleteRole.do',
+      data:roleModel.roleModel
+    }).then((response) => {
+      // commit('setManagerAllRoleDate',response.data.result)
+    }).catch((err) =>{
+//          console.log(err)
+    })
+  },
   // todo 后台管理--菜单管理
   // 获取table数据
   getManagerMenuTableDateAction({ commit,state},val){
