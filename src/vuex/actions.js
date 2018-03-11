@@ -34,7 +34,33 @@ const actions = {
       data:userModel.userModel
     }).then((response) => {
       //初始化table数据和page分页数据
-      commit('clearManagerUserTableDate')
+      // commit('clearManagerUserTableDate')
+    }).catch((err) =>{
+//          console.log(err)
+    })
+  },
+  // 修改用户
+  editManagerUserAction({ commit,state},userModel){
+    axios({
+      method: 'post',
+      url: hostUrl + 'user/editUser.do',
+      data:userModel.userModel
+    }).then((response) => {
+      //初始化table数据和page分页数据
+      // commit('clearManagerUserTableDate')
+    }).catch((err) =>{
+//          console.log(err)
+    })
+  },
+  // 删除用户
+  deleteManagerUserAction({ commit,state},userModel){
+    axios({
+      method: 'post',
+      url: hostUrl + 'user/deleteUser.do',
+      data:userModel.userModel
+    }).then((response) => {
+      //初始化table数据和page分页数据
+      // commit('clearManagerUserTableDate')
     }).catch((err) =>{
 //          console.log(err)
     })
@@ -45,13 +71,25 @@ const actions = {
   getManagerRoleTableDateAction({ commit,state},val){
     axios({
       method: 'post',
-      url: hostUrl + 'role/getAllRole.do',
+      url: hostUrl + 'role/selectAllRoleByPage.do',
       data:{
         "currentPage":val
       }
     }).then((response) => {
       //重新渲染table数据和page分页数据
       commit('setManagerRoleTableDate',response.data.result)
+    }).catch((err) =>{
+//          console.log(err)
+    })
+  },
+
+  // 获取全部角色信息数据
+  getManagerAllRoleDateAction({ commit,state}){
+    axios({
+      method: 'post',
+      url: hostUrl + 'role/getAllRole.do',
+    }).then((response) => {
+      commit('setManagerAllRoleDate',response.data.result)
     }).catch((err) =>{
 //          console.log(err)
     })

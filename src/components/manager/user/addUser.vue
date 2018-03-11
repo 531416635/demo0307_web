@@ -14,23 +14,46 @@
         <el-form-item label="密码">
           <el-input v-model="userModel.userPassword" type="password"></el-input>
         </el-form-item>
+        <el-form-item label="角色">
+          <el-select v-model="value8" filterable placeholder="请选择" @change="changeSelect">
+            <el-option
+              v-for="item in managerAllRoleData"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id">
+            </el-option>
+          </el-select>
+        </el-form-item>
       </el-form>
     </div>
   </el-card>
 </template>
 
 <script>
-    export default {
+
+  import { mapState,mapGetters, mapActions } from 'vuex'
+
+  export default {
         data(){
           return{
             labelPosition: 'top',
             userModel: {
               id:0,
               userName: '',
-              userPassword: ''
+              userPassword: '',
+              roleId:''
             },
+            value8: ''
           }
         },
+      mounted () {
+        this.getManagerAllRoleDateAction()
+      },
+      computed: {
+        ...mapState({
+          managerAllRoleData: state => state.managerAllRoleData,
+        })
+      },
       methods:{
           goBack(){
             this.$router.back(-1)
@@ -40,8 +63,15 @@
              type:'addManagerUserAction',
              userModel: this.userModel
            })
+
            this.$router.push("/manager/user")
-         }
+         },
+        ...mapActions([
+          'getManagerAllRoleDateAction'
+        ]),
+        changeSelect(val){
+            this.userModel.roleId = val
+        }
 
       }
     }

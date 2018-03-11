@@ -13,6 +13,7 @@ const state = {
   managerRoleTableData:[],
   managerRoleTableCurrentPage:1,
   managerRoleTableTotalPage:0,
+  managerAllRoleData:[],
   //后台管理--菜单管理--tree数据
   managerMenuTreeData:[],
   //后台管理--菜单管理--table数据
