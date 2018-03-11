@@ -9,6 +9,7 @@
         :data="managerMenuTreeData"
         accordion
         node-key="id"
+        :props="defaultProps"
         default-expand-all
         :expand-on-click-node="false">
         <span class="custom-tree-node" slot-scope="{ node, data }">
@@ -51,6 +52,14 @@
   import { mapState,mapGetters,mapMutations, mapActions } from 'vuex'
 
     export default {
+      data(){
+        return{
+          defaultProps: {
+            children: 'children',
+            label: 'menuName'
+          }
+        }
+      },
       mounted () {
         this.getManagerMenuTreeDateAction()
       },
@@ -76,6 +85,7 @@
             type:'setManagerMenuModel',
             managerMenuModel: data
           })
+          // console.log(this.managerMenuTreeData)
           this.$router.push("/manager/addMenu")
         },
         editMenu(data){

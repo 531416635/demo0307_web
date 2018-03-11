@@ -20,9 +20,8 @@
         <el-form-item label="父菜单">
           <el-cascader
             :options="managerMenuTreeData"
-            v-model="managerMenuModel.menuParent"
+            :props="defaultProps"
           ></el-cascader>
-          <!--<el-input v-model="managerMenuModel.menuParent" type="text"  :readonly="true"></el-input>-->
         </el-form-item>
         <el-form-item label="是否需要权限">
           <el-input v-model="managerMenuModel.menuAuth" type="text"  :readonly="true"></el-input>
@@ -42,6 +41,11 @@
       data(){
           return{
             labelPosition: 'top',
+            defaultProps:{
+              label:'menuName',
+              value:'id',
+              children: 'children'
+            }
           }
       },
       computed: {
@@ -50,6 +54,19 @@
           managerMenuTreeData: state => state.managerMenuTreeData,
         })
       },
+      methods:{
+        goBack(){
+          this.$router.back(-1)
+        },
+        addManagerUser(){
+          this.$store.dispatch({
+            type:'addManagerUserAction',
+            userModel: this.userModel
+          })
+          this.$router.push("/manager/user")
+        }
+
+      }
     }
 </script>
 
