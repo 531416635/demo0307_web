@@ -49,9 +49,8 @@ const mutations = {
      state.managerMenuModel.menuParent = ""
      state.managerMenuModel.menuAuth = ""
      state.managerMenuModel.menuEnabled = ""
-     state.managerMenuModel.label = ""
+     state.managerMenuModel.defaultSelect = ""
      state.managerMenuModel.children = []
-     state.managerMenuModel.value = ""
   }
 }
 

@@ -28,9 +28,8 @@ const state = {
     menuParent:"",
     menuAuth:"",
     menuEnabled:"",
-    label:"",
+    defaultSelect:"",
     children:[],
-    value:""
   }
 }
 

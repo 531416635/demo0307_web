@@ -39,9 +39,6 @@
 
     export default {
       name: "show-user",
-      mounted (){
-        this.consoleFuc()
-      },
       computed: {
         ...mapState({
           managerMenuModel: state => state.managerMenuModel,
@@ -51,10 +48,6 @@
         goBack(){
           this.$router.back(-1)
         },
-        consoleFuc(){
-          console.log(this.managerMenuModel)
-          console.log("===========")
-        }
       }
     }
 </script>

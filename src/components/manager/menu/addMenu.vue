@@ -21,6 +21,7 @@
           <el-cascader
             :options="managerMenuTreeData"
             :props="defaultProps"
+            v-model="managerMenuModel.defaultSelect"
           ></el-cascader>
         </el-form-item>
         <el-form-item label="是否需要权限">
@@ -45,7 +46,7 @@
               label:'menuName',
               value:'id',
               children: 'children'
-            }
+            },
           }
       },
       computed: {
