@@ -18,7 +18,7 @@
           <el-button
             type="text"
             size="mini"
-            @click="() => showMenu(node,data)">
+            @click="() => showMenu(data)">
             查看
           </el-button>
           <el-button

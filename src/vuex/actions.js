@@ -90,6 +90,33 @@ const actions = {
     })
   },
 
+  // 添加菜单
+  addManagerMenuAction({ commit,state},menuModel){
+    axios({
+      method: 'post',
+      url: hostUrl + 'menu/addMenu.do',
+      data:menuModel.menuModel
+    }).then((response) => {
+      //初始化数据
+      commit('clearManagerMenuModel')
+    }).catch((err) =>{
+//          console.log(err)
+    })
+  },
+  // 修改菜单
+  editManagerMenuAction({ commit,state},menuModel){
+    axios({
+      method: 'post',
+      url: hostUrl + 'menu/editMenu.do',
+      data:menuModel.menuModel
+    }).then((response) => {
+      //初始化数据
+      commit('clearManagerMenuModel')
+    }).catch((err) =>{
+//          console.log(err)
+    })
+  },
+
 }
 
 export default actions
