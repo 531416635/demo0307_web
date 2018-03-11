@@ -8,6 +8,8 @@ const managerUser = r => require.ensure([], () => r(require('@/components/manage
 const managerAddUser = r => require.ensure([], () => r(require('@/components/manager/user/addUser')), 'managerAddUser')
 //角色管理
 const managerRole = r => require.ensure([], () => r(require('@/components/manager/role/role')), 'managerRole')
+//角色管理 -- auth赋权页面
+const managerAuthRole = r => require.ensure([], () => r(require('@/components/manager/role/authRole')), 'managerAuthRole')
 //菜单管理 -- table展示
 const managerMenu = r => require.ensure([], () => r(require('@/components/manager/menu/menu')), 'managerMenu')
 //菜单管理 -- tree展示
@@ -51,6 +53,11 @@ export default new Router({
         name: 'managerRole',
         component: managerRole,
         meta:{title: '角色管理',keepAlive:true}
+      },{
+        path: '/manager/authRole',
+        name: 'managerAuthRole',
+        component: managerAuthRole,
+        meta:{title: '角色赋权',keepAlive:true}
       },{
         path: '/manager/menu',
         name: 'managerMenu',

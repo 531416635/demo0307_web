@@ -131,6 +131,35 @@ const actions = {
 //          console.log(err)
     })
   },
+// 查询角色对应的权限菜单ID
+  getDefaultCheckedKeysAction({ commit,state},roleModel){
+    axios({
+      method: 'post',
+      url: hostUrl + 'role/getRoleAuth.do',
+      data:roleModel.roleModel
+    }).then((response) => {
+      commit('setManagerRoleDefaultCheckedKeys',response.data.result)
+    }).catch((err) =>{
+//          console.log(err)
+    })
+  },
+// 赋权---将菜单ID数组赋值给对应的角色
+  addManagerAuthRoleAction({ commit,state},menus){
+    console.log(menus)
+    axios({
+      method: 'post',
+      url: hostUrl + 'role/addRoleAuth.do',
+      data:{
+        menus:JSON.stringify(menus.menus),
+        roleId:menus.roleId
+      }
+    }).then((response) => {
+      // commit('setManagerRoleDefaultCheckedKeys',response.data.result)
+    }).catch((err) =>{
+//          console.log(err)
+    })
+  },
+
   // todo 后台管理--菜单管理
   // 获取table数据
   getManagerMenuTableDateAction({ commit,state},val){

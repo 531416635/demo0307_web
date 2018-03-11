@@ -23,9 +23,13 @@ const mutations = {
     state.managerRoleTableCurrentPage = stateOfChange.page.currentPageNum
   },
   setManagerAllRoleDate(state, stateOfChange){
-    console.log(state)
-    console.log(stateOfChange)
     state.managerAllRoleData = stateOfChange.roleList
+  },
+  setManagerRoleModel(state, stateOfChange){
+    state.managerRoleModel = stateOfChange
+  },
+  setManagerRoleDefaultCheckedKeys(state, stateOfChange){
+    state.managerRoleDefaultCheckedKeys = stateOfChange.menuAuth
   },
 
   //  后台管理--菜单管理  渲染table数据和page分页数据

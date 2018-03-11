@@ -113,7 +113,7 @@
         ...mapState({
           managerRoleTableData: state => state.managerRoleTableData,
           managerRoleTableCurrentPage: state => state.managerRoleTableCurrentPage,
-          managerRoleTableTotalPage: state => state.managerRoleTableTotalPage
+          managerRoleTableTotalPage: state => state.managerRoleTableTotalPage,
         })
       },
       methods: {
@@ -123,6 +123,10 @@
         // todo -- 设置每页显示大小 (暂时没用)
         handleSizeChange(val) {
           console.log(`每页 ${val} 条`);
+        },
+        authClick(val){
+          this.$store.commit('setManagerRoleModel',val)
+          this.$router.push("/manager/authRole")
         },
         addClick(val) {
           this.addDialog = true
