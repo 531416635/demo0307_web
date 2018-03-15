@@ -64,7 +64,8 @@
              userModel: this.userModel
            })
 
-           this.$router.push("/manager/user")
+           this.$router.replace("/manager/user")
+           this.$router.go(0)
          },
         ...mapActions([
           'getManagerAllRoleDateAction'
